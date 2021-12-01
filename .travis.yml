@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true fan5/docker-exercise-frontend npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "docker-exercise-frontend"
+  env: "Dockerexercisefrontend-env"
+  bucket_name: "elasticbeanstalk-ap-northeast-2-043766782202"
+  bucket_path: "docker-exercise-frontend"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
